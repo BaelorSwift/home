@@ -22,7 +22,7 @@
 
 			<div class="desktop-api-demo hidden-xs">
 				<div class="input-group">
-					<span class="input-group-addon">https://api.baelor.io/v1/</span>
+					<span class="input-group-addon">https://{{ .api_address }}/v1/</span>
 					<input id="desktop-api-preview-path" type="text" class="api-preview-path form-control" placeholder="path" value="songs/style" aria-describedby="basic-addon1">
 					<span class="input-group-btn">
 						<button id="desktop-get-api-preview" class="get-api-preview btn btn-success" type="button">Shake it off!</button>
@@ -31,7 +31,7 @@
 			</div>
 			<div class="mobile-api-demo visible-xs">
 				<div>
-					<span id="api-path-prefix" class="input-group-addon">https://api.baelor.io/v1/</span>
+					<span id="api-path-prefix" class="input-group-addon">https://{{ .api_address }}/v1/</span>
 				</div>
 				<div>
 					<input id="mobile-api-preview-path" type="text" class="api-preview-path form-control" placeholder="path" value="songs/style" aria-describedby="basic-addon1">
