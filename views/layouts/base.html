@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Article">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<title>Baelor API - {{ .title }}</title>
+
+	<link href="//fonts.googleapis.com/css?family=Exo:100" rel="stylesheet" type="text/css">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/static/css/core.css" />
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<a class="navbar-brand" href="/">Home</a>
+					<a class="navbar-brand" href="/docs">Docs</a>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<a class="navbar-brand" href="/about">About</a>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<main class="main-content">
+		{{ template "content" . }}
+	</main>
+	<footer>
+		<hr />
+		<div class="container">
+			<p>
+				Developed by
+				<a href="https://twitter.com/0xdeafcafe" target="_blank">
+					Alex Forbes-Reed - @0xdeafcafe
+				</a>
+			</p>
+			<p>
+				Developed in Golang
+			</p>
+			<p>
+				Code licensed under the 
+				<a href="http://www.dbad-license.org/" target="_blank">
+					Don't Be A Dick Public License
+				</a>
+			</p>
+			<p>
+				Code Open Sourced at
+				<a href="https://github.com/BaelorSwift" target="_blank">
+					github.com/BaelorSwift
+				</a>
+			</p>
+			<p class="legal">
+				&copy; <span id="copyright-year"></span>
+			</p>
+		</div>
+	</footer>
+	<script src="//code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="/static/js/core.js"></script>
+	<!--<script src="~/js/home.js"></script>-->
+	<script>
+		!function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+		arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+		d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+		insertBefore(d,q)}(window,document,'script','_gs');
+		_gs('GSN-154379-O');
+	</script>
+</body>
+</html>
