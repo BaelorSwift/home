@@ -22,40 +22,40 @@
 
 			<div class="desktop-api-demo hidden-xs">
 				<div class="input-group">
-					<span class="input-group-addon">https://{{ .api_address }}/v1/</span>
-					<input id="desktop-api-preview-path" type="text" class="api-preview-path form-control" placeholder="path" value="songs/style" aria-describedby="basic-addon1">
+					<span class="input-group-addon">{{ .api_address }}</span>
+					<input type="text" class="form-control" placeholder="path" v-model="apiPath" />
 					<span class="input-group-btn">
-						<button id="desktop-get-api-preview" class="get-api-preview btn btn-success" type="button">Shake it off!</button>
+						<button class="get-api-preview btn btn-success" type="button" v-on:click="makeRequest">Shake it off!</button>
 					</span>
 				</div>
 			</div>
 			<div class="mobile-api-demo visible-xs">
 				<div>
-					<span id="api-path-prefix" class="input-group-addon">https://{{ .api_address }}/v1/</span>
+					<span id="api-path-prefix" class="input-group-addon">{{ .api_address }}</span>
 				</div>
 				<div>
-					<input id="mobile-api-preview-path" type="text" class="api-preview-path form-control" placeholder="path" value="songs/style" aria-describedby="basic-addon1">
+					<input type="text" class="form-control" placeholder="path" v-model="apiPath" />
 				</div>
 				<div id="api-request-button">
 					<span>
-						<button id="mobile-get-api-preview" class="get-api-preview btn btn-success" type="button">Shake it off!</button>
+						<button class="get-api-preview btn btn-success" type="button" v-on:click="makeRequest">Shake it off!</button>
 					</span>
 				</div>
 				<p>
-					<sup>
-						*
-					</sup>
-					this example uses a demo <code>api_key</code>, that can only be used on the songs/{slug}, and albums/{slug} endpoints.
+					<sup>*</sup>this example uses a demo <code>api_key</code>, that can
+					only be used on the songs/{slug}, and albums/{slug} endpoints.
 				</p>
 			</div>
 			
-			<div class="loader">
+			<div id="loader" class="loader">
 				<div class="loader-pulse"></div>
 			</div>
 
 			<div id="api-demo-response">
 				<h4 id="api-demo-response-header"></h4>
-				<pre id="json-preview-pre"><code id="json-preview" class="json"></code></pre>
+				<pre id="json-preview-pre">
+					<code id="json-preview" class="json"></code>
+				</pre>
 			</div>
 		</div>
 	</div>

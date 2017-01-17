@@ -11,8 +11,7 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/static/css/core.css" />
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
-
-	<!-- Loading first so page doesn't look weird' -->
+	<script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 <body>
@@ -38,7 +37,7 @@
 			</div>
 		</div>
 	</nav>
-	<main class="main-content">
+	<main id="bae-app" class="main-content">
 		{{ template "content" . }}
 	</main>
 	<footer>
@@ -70,10 +69,17 @@
 			</p>
 		</div>
 	</footer>
-	<script src="//code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+	<script>
+		hljs.configure({
+			tabReplace: '  ',
+		});
+		var apiAddress = '{{ .api_address }}';
+	</script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="/static/js/core.js"></script>
-	<!--<script src="~/js/home.js"></script>-->
+	<script src="/static/js/home.js"></script>
 	<script>
 		!function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
 		arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
