@@ -13,7 +13,7 @@ import (
 )
 
 var config = struct {
-	m.Context
+	m.Context `anonymous:"true"`
 
 	DSN string `json:"dsn"`
 }{}
