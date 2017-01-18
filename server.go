@@ -35,6 +35,7 @@ func main() {
 	r := gin.Default()
 	r.Use(sentry.Recovery(raven.DefaultClient, false))
 	r.Static("/static", "./static/")
+	r.StaticFile("/favicon.ico", "./static/favicon.ico")
 	r.HTMLRender = render.Init()
 
 	// Innit Controllers
