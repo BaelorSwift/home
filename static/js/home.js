@@ -2,7 +2,7 @@ var app = new Vue({
 	el: '#bae-app',
 	data: {
 		apiAddress: this.apiAddress,
-		apiPath: "songs/tim-mcgraw"
+		apiPath: "songs/slug(tim-mcgraw)"
 	},
 	methods: {
 		makeRequest: function (event) {
