@@ -1,6 +1,7 @@
 package main
 
 import (
+	"html/template"
 	"log"
 
 	c "github.com/baelorswift/home/controllers"
@@ -24,6 +25,14 @@ func main() {
 
 	// Create template renderer
 	render := eztemplate.New()
+	render.TemplateFuncMap = template.FuncMap{
+		"eq": func(a, b interface{}) bool {
+			return a == b
+		},
+		"not": func(a, b interface{}) bool {
+			return a != b
+		},
+	}
 	render.TemplatesDir = "views/"
 
 	// Create controller context
@@ -40,6 +49,7 @@ func main() {
 
 	// Innit Controllers
 	c.NewHomeController(r, context)
+	c.NewDocsController(r, context)
 
 	log.Fatal(r.Run(config.Address))
 }

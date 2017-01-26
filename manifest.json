@@ -1,0 +1,501 @@
+{
+	"version": "1.0",
+	"baseUrl": "https://api.baelor.io/v1",
+	"globalErrors": {
+		"example": "{\"code\": \"invalid_ids\",\"status\": 11217,\"metadata\": {\"genre_ids\": [\"811dddc5-d841-4ace-9245-7532f0b97b7d\"]}}",
+		"errors": [
+			{
+				"code": "invalid_authentication",
+				"status": 18573,
+				"description": "The Authentication header wasn't valid."
+			},
+			{
+				"code": "rate_limit_exceeded",
+				"status": 24960,
+				"description": "You have exceeded the rate limit, check the headers."
+			},
+			{
+				"code": "unsupported_media_type",
+				"status": 12563,
+				"description": "The API only accepts content with the media type <code>application/json</code>."
+			}
+		]
+	},
+	"pagination": {
+		"example": "{\"data\": [{\"id\":\"153a465e-9587-44d4-8fd7-89c4e64c4a1a\",\"created_at\":\"2017-01-24T14:05:26Z\",\"updated_at\":\"2017-01-24T14:16:13Z\",\"name\":\"Dream Pop\",\"name_slug\":\"dream-pop\",\"description\":\"Dream pop (or dreampop) is a subgenre of alternative rock and neo-psychedelia that developed in the 1980s. The style is typified by a preoccupation with atmosphere and texture as much as melody.\"}],\"links\": {\"first\": \"/v1/genres?start=0&count=25\",\"next\": \"/v1/genres?start=25&count=25\",\"previous\": \"/v1/genres?start=0&count=25\"}}"
+	},
+	"groups": {
+		"albums": {
+			"name": "Albums",
+			"description": "album stuff",
+			"idents": {
+				"id": "The id of the album.",
+				"slug": "The slug of the album's title."
+			},
+			"endpoints": {
+				"create-album": {
+					"name": "Create Album",
+					"description": "This endpoint will allow you to create a new album.",
+					"method": "POST",
+					"path": "/albums",
+					"isAuthenticated": true,
+					"allowsPagination": false,
+					"request": {
+						"example": {
+							"http": "POST /v1/albums HTTP/1.1\nAuthorization: Bearer fHCPxDaoNyXMTzrACxixvBpzU1m9Koz4rd7FrG7vIBVTAZOrDNiaJsWkiXlyFoSE\nContent-Type: application/json; charset=utf-8\nCookie: __cfduid=d69c93dd42c3decbe8d8364b86fd770f41484616750\nHost: api.baelor.io\nConnection: close\nUser-Agent: Paw/3.0.15 (Macintosh; OS X/10.12.3) GCDHTTPRequest\nContent-Length: 1581",
+							"json": "{\"title\":\"1989\",\"description\":\"1989 is the fifth studio album by American singer-songwriter Taylor Swift. It was released on October 27, 2014, through Big Machine Records. Swift began preparing for the album during the same year which Red was released, and during a significant amount of media scrutiny. Over the course of the two-year songwriting period, she primarily collaborated with producers Max Martin and Shellback\\u2014Martin served as the album's executive producer alongside Swift. Named after Swift's birth year, the album's title was inspired by the pop music scene of the 1980s.\",\"length\":2921000,\"recorded_at\":\"2013\",\"released_at\":1414368000,\"cover_image\":\"/static/images/albums/1989.jpg\",\"label_id\":\"d1ea2ebc-f8ce-434b-a6ee-28aa88f802f0\",\"genre_ids\":[\"c9581b8b-c72e-4e10-a54e-4c54f9d950b5\",\"9742e751-b813-474c-bc09-c02de8867e9e\",\"15169c42-2ebd-4dd4-baf1-30ed1eab6727\"],\"producer_ids\":[\"ce3e6e55-d9b0-4c0e-8267-368c7dc9e7bf\",\"2e6f6306-75ae-4270-9347-4aa7abc6f795\",\"3bb7c3a4-7bbb-4b06-b0c1-1fcf71961082\",\"68d56953-1753-49a3-95e8-dc9d5c185bc9\",\"9df3fb0d-9d82-40a5-93b0-f40b7a060863\",\"f09488c6-3d47-4205-aa7c-164fba02924d\",\"e590d28c-e380-4e35-a5cd-1de8896644af\",\"6871fc3a-9ef6-4d9e-985a-6f296dcb48d8\",\"f585564b-ecdb-4025-b4e2-92157a33fc54\",\"ab2fc941-9ec6-4a69-997b-c038903042f3\",\"7bd536a6-8792-44a6-a31e-d8d94c4799ee\"],\"studio_ids\":[\"51ae6963-7e54-4eea-90af-7014b458517e\",\"9c870c93-ec5c-4a69-9e10-cf70c981fb3d\",\"ed025340-f038-4c65-9766-378c98a4d5c3\",\"79842e71-128c-4e01-869b-dbb671c0a485\",\"79a635b2-c962-4c27-8f10-7fd96bf40e78\",\"dec0ccf4-d79e-4d0c-bb87-a91c807107ad\",\"fd964692-0b38-45f7-8005-d7099de99157\"]}"
+						},
+						"body": [
+							{
+								"name": "title",
+								"required": true,
+								"description": "The title of the album.",
+								"example": "1989"
+							},
+							{
+								"name": "description",
+								"required": true,
+								"description": "A description of the album.",
+								"example": "1989 is the fifth studio album by American singer-songwriter Taylor Swift..."
+							},
+							{
+								"name": "length",
+								"required": true,
+								"description": "The length (in milliseconds) of the album.",
+								"example": "2921000"
+							},
+							{
+								"name": "recorded_at",
+								"required": true,
+								"description": "The year the album was recorded.",
+								"example": "2013"
+							},
+							{
+								"name": "released_at",
+								"required": true,
+								"description": "A unix timestamp of the year the album was released.",
+								"example": "1414368000"
+							},
+							{
+								"name": "cover_image",
+								"required": true,
+								"description": "A link to the image of the album. It must be a JPEG encoded image that is 1500x1500.",
+								"example": "/static/images/albums/1989.jpg"
+							},
+							{
+								"name": "label_id",
+								"required": true,
+								"description": "The ID of the label the album was released under.",
+								"example": "d1ea2ebc-f8ce-434b-a6ee-28aa88f802f0"
+							},
+							{
+								"name": "genre_ids",
+								"required": true,
+								"description": "An array of ID's of the genres the album falls under.",
+								"example": "-"
+							},
+							{
+								"name": "producer_ids",
+								"required": true,
+								"description": "An array of ID's of the people who produced the album.",
+								"example": "-"
+							},
+							{
+								"name": "studio_ids",
+								"required": true,
+								"description": "An array of ID's of the studios where the album was recorded.",
+								"example": "-"
+							}
+						],
+						"schema": "{\"$schema\": \"http://json-schema.org/draft-04/schema#\",\"type\": \"object\",\"required\": [\"title\",\"description\",\"length\",\"recorded_at\",\"released_at\",\"cover_image\",\"label_id\",\"genre_ids\",\"producer_ids\",\"studio_ids\"],\"additionalProperties\": false,\"properties\": {\"title\": {\"type\": \"string\",\"minLength\": 1},\"description\": {\"type\": \"string\",\"minLength\": 1},\"length\": {\"type\": \"integer\",\"minimum\": 1},\"recorded_at\": {\"type\": \"string\",\"pattern\": \"\\\\d{4}\"},\"released_at\": {\"type\": \"integer\"},\"cover_image\": {\"type\": \"string\",\"minLength\": 1},\"label_id\": {\"type\": \"string\",\"pattern\": \"[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}\"},\"genre_ids\": {\"type\": \"array\",\"minItems\": 1,\"items\": {\"type\": \"string\",\"pattern\": \"[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}\"}},\"producer_ids\": {\"type\": \"array\",\"minItems\": 1,\"items\": {\"type\": \"string\",\"pattern\": \"[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}\"}},\"studio_ids\": {\"type\": \"array\",\"minItems\": 1,\"items\": {\"type\": \"string\",\"pattern\": \"[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}\"}}}}"
+					},
+					"response": {
+						"http": "HTTP/1.1 201 Created\nDate: Thu, 26 Jan 2017 15:51:08 GMT\nContent-Type: application/json; charset=utf-8\nTransfer-Encoding: chunked\nConnection: close\nX-Rate-Limit-Limit: 1000\nX-Rate-Limit-Remaining: 998\nX-Rate-Limit-Reset: 2017-01-26 16:00:00 +0000 UTC\nStrict-Transport-Security: max-age=15552000\nX-Content-Type-Options: nosniff\nServer: cloudflare-nginx\nCF-RAY: 32751fe44a301371-LHR",
+						"json": "{\"id\":\"1d3442d7-434a-4dba-a615-d2ae0d82b421\",\"created_at\":\"2017-01-26T15:51:08.33565328Z\",\"updated_at\":\"2017-01-26T15:51:08.33565328Z\",\"title\":\"19899\",\"title_slug\":\"19899\",\"description\":\"1989 is the fifth studio album by American singer-songwriter Taylor Swift. It was released on October 27, 2014, through Big Machine Records. Swift began preparing for the album during the same year which Red was released, and during a significant amount of media scrutiny. Over the course of the two-year songwriting period, she primarily collaborated with producers Max Martin and Shellback—Martin served as the album's executive producer alongside Swift. Named after Swift's birth year, the album's title was inspired by the pop music scene of the 1980s.\",\"length\":2921000,\"recorded_at\":\"2013\",\"released_at\":1414368000,\"cover_image\":\"/static/images/albums/1989.jpg\",\"songs\":[],\"genres\":[{\"id\":\"15169c42-2ebd-4dd4-baf1-30ed1eab6727\",\"created_at\":\"2017-01-24T11:45:16Z\",\"updated_at\":\"2017-01-26T15:51:08.338647475Z\",\"name\":\"Synthpop\",\"name_slug\":\"synthpop\",\"description\":\"Synthpop (also known as technopop), a subgenre of new wave music first became prominent in the late 1970s and features the synthesizer as the dominant musical instrument. It was prefigured in the 1960s and early 1970s by the use of synthesizers in progressive rock, electronic, art rock, disco, and particularly the \\\"Krautrock\\\" of bands like Kraftwerk. It arose as a distinct genre in Japan and the United Kingdom in the post-punk era as part of the new wave movement of the late-1970s to the mid-1980s.\"},{\"id\":\"9742e751-b813-474c-bc09-c02de8867e9e\",\"created_at\":\"2017-01-19T18:24:02Z\",\"updated_at\":\"2017-01-26T15:51:08.370257384Z\",\"name\":\"Dance-pop\",\"name_slug\":\"dance-pop\",\"description\":\"Dance-pop is a pop and dance subgenre that originated in the early 1980s. It is generally up-tempo music intended for nightclubs with the intention of being danceable but also suitable for contemporary hit radio. Developing from a combination of electronic dance music and pop music, with influences of disco music, post-disco, new wave, synthpop, electropop and house, it is generally characterised by strong beats with easy, uncomplicated song structures which are generally more similar to pop music than the more free-form dance genre, with an emphasis on melody as well as catchy tunes. The genre, on the whole, tends to be producer-driven, despite some notable exceptions.\"},{\"id\":\"c9581b8b-c72e-4e10-a54e-4c54f9d950b5\",\"created_at\":\"2017-01-19T17:17:57Z\",\"updated_at\":\"2017-01-26T15:51:08.371859935Z\",\"name\":\"Pop\",\"name_slug\":\"pop\",\"description\":\"Pop music is a genre of popular music that originated in its modern form in the Western world during the 1950s and 1960s as a softer alternative to rock and roll. The terms \\\"popular music\\\" and \\\"pop music\\\" are often used interchangeably, although the former describes all music that is popular and includes many styles. \\\"Pop\\\" and \\\"rock\\\" were synonymous terms until the late 1960s, when they were increasingly used in opposition from each other.\"}],\"producers\":[{\"id\":\"2e6f6306-75ae-4270-9347-4aa7abc6f795\",\"created_at\":\"2017-01-17T15:56:03Z\",\"updated_at\":\"2017-01-26T15:51:08.373422585Z\",\"name\":\"Taylor Swift\",\"name_slug\":\"taylor-swift\",\"nationality\":\"American\",\"occupation\":\"Singer-Songwriter\"},{\"id\":\"3bb7c3a4-7bbb-4b06-b0c1-1fcf71961082\",\"created_at\":\"2017-01-24T11:45:55Z\",\"updated_at\":\"2017-01-26T15:51:08.391418059Z\",\"name\":\"Jack Antonoff\",\"name_slug\":\"jack-antonoff\",\"nationality\":\"American\",\"occupation\":\"Singer-Songwriter\"},{\"id\":\"6871fc3a-9ef6-4d9e-985a-6f296dcb48d8\",\"created_at\":\"2017-01-24T11:47:48Z\",\"updated_at\":\"2017-01-26T15:51:08.393364721Z\",\"name\":\"Ali Payami\",\"name_slug\":\"ali-payami\",\"nationality\":\"Iranian\",\"occupation\":\"Composer\"},{\"id\":\"68d56953-1753-49a3-95e8-dc9d5c185bc9\",\"created_at\":\"2017-01-17T15:55:50Z\",\"updated_at\":\"2017-01-26T15:51:08.394524358Z\",\"name\":\"Nathan Chapman\",\"name_slug\":\"nathan-chapman\",\"nationality\":\"American\",\"occupation\":\"Record Producer\"},{\"id\":\"7bd536a6-8792-44a6-a31e-d8d94c4799ee\",\"created_at\":\"2017-01-24T11:48:45Z\",\"updated_at\":\"2017-01-26T15:51:08.396126809Z\",\"name\":\"Noel Zancanella\",\"name_slug\":\"noel-zancanella\",\"nationality\":\"American\",\"occupation\":\"Songwriter, Record Producer\"},{\"id\":\"9df3fb0d-9d82-40a5-93b0-f40b7a060863\",\"created_at\":\"2017-01-24T11:46:19Z\",\"updated_at\":\"2017-01-26T15:51:08.397538454Z\",\"name\":\"Imogen Heap\",\"name_slug\":\"imogen-heap\",\"nationality\":\"British\",\"occupation\":\"Singer-Songwriter, Composer\"},{\"id\":\"ab2fc941-9ec6-4a69-997b-c038903042f3\",\"created_at\":\"2017-01-24T11:48:12Z\",\"updated_at\":\"2017-01-26T15:51:08.398736792Z\",\"name\":\"Ryan Tedder\",\"name_slug\":\"ryan-tedder\",\"nationality\":\"American\",\"occupation\":\"Singer-Songwriter, Record Producer\"},{\"id\":\"ce3e6e55-d9b0-4c0e-8267-368c7dc9e7bf\",\"created_at\":\"2017-01-19T17:13:51Z\",\"updated_at\":\"2017-01-26T15:51:08.400334243Z\",\"name\":\"Max Martin\",\"name_slug\":\"max-martin\",\"nationality\":\"Swedish\",\"occupation\":\"Songwriter\"},{\"id\":\"e590d28c-e380-4e35-a5cd-1de8896644af\",\"created_at\":\"2017-01-24T11:47:23Z\",\"updated_at\":\"2017-01-26T15:51:08.401504581Z\",\"name\":\"Mattman \\u0026 Robin\",\"name_slug\":\"mattman--robin\",\"nationality\":\"Swedish\",\"occupation\":\"Songwriter, Production\"},{\"id\":\"f09488c6-3d47-4205-aa7c-164fba02924d\",\"created_at\":\"2017-01-24T11:46:44Z\",\"updated_at\":\"2017-01-26T15:51:08.402716619Z\",\"name\":\"Greg Kurstin\",\"name_slug\":\"greg-kurstin\",\"nationality\":\"American\",\"occupation\":\"Record Producer, Songwriter\"},{\"id\":\"f585564b-ecdb-4025-b4e2-92157a33fc54\",\"created_at\":\"2017-01-19T17:15:14Z\",\"updated_at\":\"2017-01-26T15:51:08.403935758Z\",\"name\":\"Shellback\",\"name_slug\":\"shellback\",\"nationality\":\"Swedish\",\"occupation\":\"Songwriter, Record Producer\"}],\"studios\":[{\"id\":\"79842e71-128c-4e01-869b-dbb671c0a485\",\"created_at\":\"2017-01-24T12:03:11Z\",\"updated_at\":\"2017-01-26T15:51:08.405160197Z\",\"name\":\"MXM Studios\",\"name_slug\":\"mxm-studios\",\"founded_in\":\"Stockholm, Sweden\",\"founded_at\":978307200,\"website\":\"http://www.maratone.se/\",\"albums\":[]},{\"id\":\"79a635b2-c962-4c27-8f10-7fd96bf40e78\",\"created_at\":\"2017-01-19T12:44:19Z\",\"updated_at\":\"2017-01-26T15:51:08.426713185Z\",\"name\":\"Pain in the Art Studio\",\"name_slug\":\"pain-in-the-art-studio\",\"founded_in\":\"Nashville, TN, Ameirica\",\"founded_at\":1325376000,\"website\":\"https://musicbrainz.org/place/65ac6370-2f0a-4533-a2f4-53717ff68940\",\"albums\":[]},{\"id\":\"9c870c93-ec5c-4a69-9e10-cf70c981fb3d\",\"created_at\":\"2017-01-24T11:58:26Z\",\"updated_at\":\"2017-01-26T15:51:08.427978925Z\",\"name\":\"Jungle City Studios\",\"name_slug\":\"jungle-city-studios\",\"founded_in\":\"New York City, NY, America\",\"founded_at\":1293840000,\"website\":\"http://www.junglecitystudios.com/\",\"albums\":[]},{\"id\":\"dec0ccf4-d79e-4d0c-bb87-a91c807107ad\",\"created_at\":\"2017-01-24T12:05:06Z\",\"updated_at\":\"2017-01-26T15:51:08.429219965Z\",\"name\":\"Studio Elevator Nobody\",\"name_slug\":\"studio-elevator-nobody\",\"founded_in\":\"Gothenburg, Västra Götaland, Sweden\",\"founded_at\":1230768000,\"website\":\"http://www.maratone.se/\",\"albums\":[]},{\"id\":\"ed025340-f038-4c65-9766-378c98a4d5c3\",\"created_at\":\"2017-01-24T12:00:30Z\",\"updated_at\":\"2017-01-26T15:51:08.430482605Z\",\"name\":\"Lamby's House Studios\",\"name_slug\":\"lambys-house-studios\",\"founded_in\":\"Brooklyn, NY, America\",\"founded_at\":1388534400,\"website\":\"https://musicbrainz.org/place/579a7073-46ee-47eb-9a63-4e5bd535c7cd\",\"albums\":[]},{\"id\":\"fd964692-0b38-45f7-8005-d7099de99157\",\"created_at\":\"2017-01-24T12:05:50Z\",\"updated_at\":\"2017-01-26T15:51:08.431713344Z\",\"name\":\"The Hideaway Studio\",\"name_slug\":\"the-hideaway-studio\",\"founded_in\":\"Minneapolis, MN, America\",\"founded_at\":1230768000,\"website\":\"http://thehideawaympls.com/\",\"albums\":[]}],\"label\":{\"id\":\"d1ea2ebc-f8ce-434b-a6ee-28aa88f802f0\",\"created_at\":\"2017-01-17T15:54:30Z\",\"updated_at\":\"2017-01-26T15:51:08.335014759Z\",\"name\":\"Big Machine Records\",\"name_slug\":\"big-machine-records\",\"founded_at\":1125532800,\"founded_in\":\"American\",\"location\":\"Record Executive\",\"website\":\"https://bigmachinerecords.com/\",\"albums\":[]}}"
+					},
+					"errors": [
+						{
+							"code": "validation_failed",
+							"status": 23731,
+							"description": "Validation of the JSON body failed. Check metadata."
+						},
+						{
+							"code": "album_already_exists",
+							"status": 2005,
+							"description": "An album with the specified name already exists."
+						},
+						{
+							"code": "invalid_ids",
+							"status": 11217,
+							"description": "One of the ids given was invalid. Check metadata."
+						},
+						{
+							"code": "unknown_error_creating_album",
+							"status": 49965,
+							"description": "There was an unknown error creating the album. Check sentry logs."
+						}
+					]
+				},
+				"get-albums": {
+					"name": "Get Albums",
+					"description": "This endpoint returns all albums within the pagination parameters.",
+					"method": "GET",
+					"path": "/albums",
+					"isAuthenticated": false,
+					"allowsPagination": true,
+					"request": {
+						"example": {
+							"http": "GET /v1/albums HTTP/1.1\nCookie: __cfduid=d69c93dd42c3decbe8d8364b86fd770f41484616750\nHost: api.baelor.io\nConnection: close\nUser-Agent: Paw/3.0.15 (Macintosh; OS X/10.12.3) GCDHTTPRequest"
+						}
+					},
+					"response": {
+						"http": "HTTP/1.1 200 OK\nDate: Thu, 26 Jan 2017 19:49:15 GMT\nContent-Type: application/json; charset=utf-8\nTransfer-Encoding: chunked\nConnection: close\nX-Rate-Limit-Limit: 1000\nX-Rate-Limit-Remaining: 999\nX-Rate-Limit-Reset: 2017-01-26 20:00:00 +0000 UTC\nStrict-Transport-Security: max-age=15552000\nX-Content-Type-Options: nosniff\nServer: cloudflare-nginx\nCF-RAY: 32767cb339e73542-LHR",
+						"json": "{\"data\":[{\"id\":\"1d3442d7-434a-4dba-a615-d2ae0d82b421\",\"created_at\":\"2017-01-26T15:51:08Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"title\":\"19899\",\"title_slug\":\"19899\",\"description\":\"1989 is the fifth studio album by American singer-songwriter Taylor Swift. It was released on October 27, 2014, through Big Machine Records. Swift began preparing for the album during the same year which Red was released, and during a significant amount of media scrutiny. Over the course of the two-year songwriting period, she primarily collaborated with producers Max Martin and Shellback—Martin served as the album's executive producer alongside Swift. Named after Swift's birth year, the album's title was inspired by the pop music scene of the 1980s.\",\"length\":2921000,\"recorded_at\":\"2013\",\"released_at\":1414368000,\"cover_image\":\"/static/images/albums/1989.jpg\",\"songs\":[],\"genres\":[{\"id\":\"15169c42-2ebd-4dd4-baf1-30ed1eab6727\",\"created_at\":\"2017-01-24T11:45:16Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Synthpop\",\"name_slug\":\"synthpop\",\"description\":\"Synthpop (also known as technopop), a subgenre of new wave music first became prominent in the late 1970s and features the synthesizer as the dominant musical instrument. It was prefigured in the 1960s and early 1970s by the use of synthesizers in progressive rock, electronic, art rock, disco, and particularly the \\\"Krautrock\\\" of bands like Kraftwerk. It arose as a distinct genre in Japan and the United Kingdom in the post-punk era as part of the new wave movement of the late-1970s to the mid-1980s.\"},{\"id\":\"9742e751-b813-474c-bc09-c02de8867e9e\",\"created_at\":\"2017-01-19T18:24:02Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Dance-pop\",\"name_slug\":\"dance-pop\",\"description\":\"Dance-pop is a pop and dance subgenre that originated in the early 1980s. It is generally up-tempo music intended for nightclubs with the intention of being danceable but also suitable for contemporary hit radio. Developing from a combination of electronic dance music and pop music, with influences of disco music, post-disco, new wave, synthpop, electropop and house, it is generally characterised by strong beats with easy, uncomplicated song structures which are generally more similar to pop music than the more free-form dance genre, with an emphasis on melody as well as catchy tunes. The genre, on the whole, tends to be producer-driven, despite some notable exceptions.\"},{\"id\":\"c9581b8b-c72e-4e10-a54e-4c54f9d950b5\",\"created_at\":\"2017-01-19T17:17:57Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Pop\",\"name_slug\":\"pop\",\"description\":\"Pop music is a genre of popular music that originated in its modern form in the Western world during the 1950s and 1960s as a softer alternative to rock and roll. The terms \\\"popular music\\\" and \\\"pop music\\\" are often used interchangeably, although the former describes all music that is popular and includes many styles. \\\"Pop\\\" and \\\"rock\\\" were synonymous terms until the late 1960s, when they were increasingly used in opposition from each other.\"}],\"producers\":[{\"id\":\"2e6f6306-75ae-4270-9347-4aa7abc6f795\",\"created_at\":\"2017-01-17T15:56:03Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Taylor Swift\",\"name_slug\":\"taylor-swift\",\"nationality\":\"American\",\"occupation\":\"Singer-Songwriter\"},{\"id\":\"3bb7c3a4-7bbb-4b06-b0c1-1fcf71961082\",\"created_at\":\"2017-01-24T11:45:55Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Jack Antonoff\",\"name_slug\":\"jack-antonoff\",\"nationality\":\"American\",\"occupation\":\"Singer-Songwriter\"},{\"id\":\"6871fc3a-9ef6-4d9e-985a-6f296dcb48d8\",\"created_at\":\"2017-01-24T11:47:48Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Ali Payami\",\"name_slug\":\"ali-payami\",\"nationality\":\"Iranian\",\"occupation\":\"Composer\"},{\"id\":\"68d56953-1753-49a3-95e8-dc9d5c185bc9\",\"created_at\":\"2017-01-17T15:55:50Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Nathan Chapman\",\"name_slug\":\"nathan-chapman\",\"nationality\":\"American\",\"occupation\":\"Record Producer\"},{\"id\":\"7bd536a6-8792-44a6-a31e-d8d94c4799ee\",\"created_at\":\"2017-01-24T11:48:45Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Noel Zancanella\",\"name_slug\":\"noel-zancanella\",\"nationality\":\"American\",\"occupation\":\"Songwriter, Record Producer\"},{\"id\":\"9df3fb0d-9d82-40a5-93b0-f40b7a060863\",\"created_at\":\"2017-01-24T11:46:19Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Imogen Heap\",\"name_slug\":\"imogen-heap\",\"nationality\":\"British\",\"occupation\":\"Singer-Songwriter, Composer\"},{\"id\":\"ab2fc941-9ec6-4a69-997b-c038903042f3\",\"created_at\":\"2017-01-24T11:48:12Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Ryan Tedder\",\"name_slug\":\"ryan-tedder\",\"nationality\":\"American\",\"occupation\":\"Singer-Songwriter, Record Producer\"},{\"id\":\"ce3e6e55-d9b0-4c0e-8267-368c7dc9e7bf\",\"created_at\":\"2017-01-19T17:13:51Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Max Martin\",\"name_slug\":\"max-martin\",\"nationality\":\"Swedish\",\"occupation\":\"Songwriter\"},{\"id\":\"e590d28c-e380-4e35-a5cd-1de8896644af\",\"created_at\":\"2017-01-24T11:47:23Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Mattman & Robin\",\"name_slug\":\"mattman--robin\",\"nationality\":\"Swedish\",\"occupation\":\"Songwriter, Production\"},{\"id\":\"f09488c6-3d47-4205-aa7c-164fba02924d\",\"created_at\":\"2017-01-24T11:46:44Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Greg Kurstin\",\"name_slug\":\"greg-kurstin\",\"nationality\":\"American\",\"occupation\":\"Record Producer, Songwriter\"},{\"id\":\"f585564b-ecdb-4025-b4e2-92157a33fc54\",\"created_at\":\"2017-01-19T17:15:14Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Shellback\",\"name_slug\":\"shellback\",\"nationality\":\"Swedish\",\"occupation\":\"Songwriter, Record Producer\"}],\"studios\":[{\"id\":\"79842e71-128c-4e01-869b-dbb671c0a485\",\"created_at\":\"2017-01-24T12:03:11Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"MXM Studios\",\"name_slug\":\"mxm-studios\",\"founded_in\":\"Stockholm, Sweden\",\"founded_at\":978307200,\"website\":\"http://www.maratone.se/\",\"albums\":[]},{\"id\":\"79a635b2-c962-4c27-8f10-7fd96bf40e78\",\"created_at\":\"2017-01-19T12:44:19Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Pain in the Art Studio\",\"name_slug\":\"pain-in-the-art-studio\",\"founded_in\":\"Nashville, TN, Ameirica\",\"founded_at\":1325376000,\"website\":\"https://musicbrainz.org/place/65ac6370-2f0a-4533-a2f4-53717ff68940\",\"albums\":[]},{\"id\":\"9c870c93-ec5c-4a69-9e10-cf70c981fb3d\",\"created_at\":\"2017-01-24T11:58:26Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Jungle City Studios\",\"name_slug\":\"jungle-city-studios\",\"founded_in\":\"New York City, NY, America\",\"founded_at\":1293840000,\"website\":\"http://www.junglecitystudios.com/\",\"albums\":[]},{\"id\":\"dec0ccf4-d79e-4d0c-bb87-a91c807107ad\",\"created_at\":\"2017-01-24T12:05:06Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Studio Elevator Nobody\",\"name_slug\":\"studio-elevator-nobody\",\"founded_in\":\"Gothenburg, Västra Götaland, Sweden\",\"founded_at\":1230768000,\"website\":\"http://www.maratone.se/\",\"albums\":[]},{\"id\":\"ed025340-f038-4c65-9766-378c98a4d5c3\",\"created_at\":\"2017-01-24T12:00:30Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Lamby's House Studios\",\"name_slug\":\"lambys-house-studios\",\"founded_in\":\"Brooklyn, NY, America\",\"founded_at\":1388534400,\"website\":\"https://musicbrainz.org/place/579a7073-46ee-47eb-9a63-4e5bd535c7cd\",\"albums\":[]},{\"id\":\"fd964692-0b38-45f7-8005-d7099de99157\",\"created_at\":\"2017-01-24T12:05:50Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"The Hideaway Studio\",\"name_slug\":\"the-hideaway-studio\",\"founded_in\":\"Minneapolis, MN, America\",\"founded_at\":1230768000,\"website\":\"http://thehideawaympls.com/\",\"albums\":[]}],\"label\":{\"id\":\"d1ea2ebc-f8ce-434b-a6ee-28aa88f802f0\",\"created_at\":\"2017-01-17T15:54:30Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Big Machine Records\",\"name_slug\":\"big-machine-records\",\"founded_at\":1125532800,\"founded_in\":\"American\",\"location\":\"Record Executive\",\"website\":\"https://bigmachinerecords.com/\",\"albums\":[]}}],\"links\":{\"first\":\"/v1/albums?start=0&count=25\",\"next\":\"/v1/albums?start=25&count=25\",\"previous\":\"/v1/albums?start=0&count=25\"}}"
+					}
+				},
+				"get-album": {
+					"name": "Get Album",
+					"description": "This endpoint will get an album by it's identifier.",
+					"method": "GET",
+					"path": "/albums/(ident)",
+					"isAuthenticated": false,
+					"allowsPagination": false,
+					"request": {
+						"example": {
+							"http": "GET /v1/albums/slug(1989) HTTP/1.1\nCookie: __cfduid=d69c93dd42c3decbe8d8364b86fd770f41484616750\nHost: api.baelor.io\nConnection: close\nUser-Agent: Paw/3.0.15 (Macintosh; OS X/10.12.3) GCDHTTPRequest",
+							"json": ""
+						}
+					},
+					"response": {
+						"http": "HTTP/1.1 200 OK\nDate: Thu, 26 Jan 2017 18:46:11 GMT\nContent-Type: application/json; charset=utf-8\nTransfer-Encoding: chunked\nConnection: close\nX-Rate-Limit-Limit: 1000\nX-Rate-Limit-Remaining: 999\nX-Rate-Limit-Reset: 2017-01-26 19:00:00 +0000 UTC\nStrict-Transport-Security: max-age=15552000\nX-Content-Type-Options: nosniff\nServer: cloudflare-nginx\nCF-RAY: 32762054aaba349a-LHR",
+						"json": "{\"id\":\"7aa3b8c5-6865-4231-89df-f0769633dc93\",\"created_at\":\"2017-01-24T12:09:21Z\",\"updated_at\":\"2017-01-24T14:16:13Z\",\"title\":\"1989\",\"title_slug\":\"1989\",\"description\":\"1989 is the fifth studio album by American singer-songwriter Taylor Swift. It was released on October 27, 2014, through Big Machine Records. Swift began preparing for the album during the same year which Red was released, and during a significant amount of media scrutiny. Over the course of the two-year songwriting period, she primarily collaborated with producers Max Martin and Shellback—Martin served as the album's executive producer alongside Swift. Named after Swift's birth year, the album's title was inspired by the pop music scene of the 1980s.\",\"length\":2921000,\"recorded_at\":\"2013\",\"released_at\":1414368000,\"cover_image\":\"/static/images/albums/1989.jpg\",\"songs\":[{\"id\":\"131e9b5f-3077-4281-87d5-be4aeaa098eb\",\"created_at\":\"2017-01-24T12:34:23Z\",\"updated_at\":\"2017-01-24T12:34:23Z\",\"index\":10,\"title\":\"This Love\",\"title_slug\":\"this-love\",\"length\":250000,\"is_single\":false,\"producers\":[],\"genres\":[],\"writers\":[],\"lyrics\":[],\"featuring\":[]},{\"id\":\"1b0a60dc-866f-4438-9636-fc8b01235d19\",\"created_at\":\"2017-01-24T14:16:13Z\",\"updated_at\":\"2017-01-24T14:16:13Z\",\"index\":14,\"title\":\"New Romantics\",\"title_slug\":\"new-romantics\",\"length\":230000,\"is_single\":true,\"producers\":[],\"genres\":[],\"writers\":[],\"lyrics\":[],\"featuring\":[]},{\"id\":\"25044361-c6cd-46ad-8078-e780232bbcc1\",\"created_at\":\"2017-01-24T13:54:07Z\",\"updated_at\":\"2017-01-24T13:54:07Z\",\"index\":2,\"title\":\"Style\",\"title_slug\":\"style\",\"length\":231000,\"is_single\":true,\"producers\":[],\"genres\":[],\"writers\":[],\"lyrics\":[],\"featuring\":[]},{\"id\":\"2bf828c9-6d1a-4b4a-a32d-cb4c27602be3\",\"created_at\":\"2017-01-24T13:55:17Z\",\"updated_at\":\"2017-01-24T13:55:17Z\",\"index\":3,\"title\":\"Out of the Woods\",\"title_slug\":\"out-of-the-woods\",\"length\":235000,\"is_single\":true,\"producers\":[],\"genres\":[],\"writers\":[],\"lyrics\":[],\"featuring\":[]},{\"id\":\"6f2367bc-0b1a-4aec-9f22-4d85999394c3\",\"created_at\":\"2017-01-24T12:39:44Z\",\"updated_at\":\"2017-01-24T12:39:44Z\",\"index\":0,\"title\":\"Welcome to New York\",\"title_slug\":\"welcome-to-new-york\",\"length\":212000,\"is_single\":false,\"producers\":[],\"genres\":[],\"writers\":[],\"lyrics\":[],\"featuring\":[]},{\"id\":\"7a095a95-1bae-4d03-8b9a-86c722397cd1\",\"created_at\":\"2017-01-24T13:30:09Z\",\"updated_at\":\"2017-01-24T13:30:09Z\",\"index\":1,\"title\":\"Blank Space\",\"title_slug\":\"blank-space\",\"length\":231000,\"is_single\":true,\"producers\":[],\"genres\":[],\"writers\":[],\"lyrics\":[],\"featuring\":[]},{\"id\":\"7c8e6509-a9ca-48da-a779-f046aa025043\",\"created_at\":\"2017-01-24T12:35:23Z\",\"updated_at\":\"2017-01-24T12:35:23Z\",\"index\":11,\"title\":\"I Know Places\",\"title_slug\":\"i-know-places\",\"length\":195000,\"is_single\":false,\"producers\":[],\"genres\":[],\"writers\":[],\"lyrics\":[],\"featuring\":[]},{\"id\":\"957b158e-21a4-4128-b19e-9bb24b6a5c91\",\"created_at\":\"2017-01-24T14:00:05Z\",\"updated_at\":\"2017-01-24T14:00:05Z\",\"index\":7,\"title\":\"Bad Blood\",\"title_slug\":\"bad-blood\",\"length\":199000,\"is_single\":true,\"producers\":[],\"genres\":[],\"writers\":[],\"lyrics\":[],\"featuring\":[]},{\"id\":\"99fa5d79-f889-44b2-b1f4-ee2377ee9be4\",\"created_at\":\"2017-01-24T12:36:53Z\",\"updated_at\":\"2017-01-24T12:36:53Z\",\"index\":13,\"title\":\"Wonderland\",\"title_slug\":\"wonderland\",\"length\":245000,\"is_single\":false,\"producers\":[],\"genres\":[],\"writers\":[],\"lyrics\":[],\"featuring\":[]},{\"id\":\"9aef70fb-ce35-4e52-80c0-a7c689653215\",\"created_at\":\"2017-01-24T12:30:40Z\",\"updated_at\":\"2017-01-24T12:30:40Z\",\"index\":6,\"title\":\"I Wish You Would\",\"title_slug\":\"i-wish-you-would\",\"length\":207000,\"is_single\":false,\"producers\":[],\"genres\":[],\"writers\":[],\"lyrics\":[],\"featuring\":[]},{\"id\":\"beeee87c-df07-45f1-8fa4-2655de4a2d68\",\"created_at\":\"2017-01-24T14:05:50Z\",\"updated_at\":\"2017-01-24T14:05:50Z\",\"index\":8,\"title\":\"Wildest Dreams\",\"title_slug\":\"wildest-dreams\",\"length\":212000,\"is_single\":true,\"producers\":[],\"genres\":[],\"writers\":[],\"lyrics\":[],\"featuring\":[]},{\"id\":\"d793496f-3bbe-4b7c-84da-0f4c855e7456\",\"created_at\":\"2017-01-24T12:33:36Z\",\"updated_at\":\"2017-01-24T12:33:36Z\",\"index\":9,\"title\":\"How You Get the Girl\",\"title_slug\":\"how-you-get-the-girl\",\"length\":247000,\"is_single\":false,\"producers\":[],\"genres\":[],\"writers\":[],\"lyrics\":[],\"featuring\":[]},{\"id\":\"e6267069-03e9-41dd-abf3-bd8028e9ee59\",\"created_at\":\"2017-01-24T12:36:07Z\",\"updated_at\":\"2017-01-24T12:36:07Z\",\"index\":12,\"title\":\"Clean\",\"title_slug\":\"clean\",\"length\":270000,\"is_single\":false,\"producers\":[],\"genres\":[],\"writers\":[],\"lyrics\":[],\"featuring\":[]},{\"id\":\"efcf88ed-af01-4761-8d31-ac695c0e3d9e\",\"created_at\":\"2017-01-24T13:56:06Z\",\"updated_at\":\"2017-01-24T13:56:06Z\",\"index\":5,\"title\":\"Shake It Off\",\"title_slug\":\"shake-it-off\",\"length\":219000,\"is_single\":true,\"producers\":[],\"genres\":[],\"writers\":[],\"lyrics\":[],\"featuring\":[]},{\"id\":\"f5b8eb6f-369e-43f1-a5b3-7a7a532106b9\",\"created_at\":\"2017-01-24T12:28:47Z\",\"updated_at\":\"2017-01-24T12:28:47Z\",\"index\":4,\"title\":\"All You Had to Do Was Stay\",\"title_slug\":\"all-you-had-to-do-was-stay\",\"length\":193000,\"is_single\":false,\"producers\":[],\"genres\":[],\"writers\":[],\"lyrics\":[],\"featuring\":[]}],\"genres\":[{\"id\":\"15169c42-2ebd-4dd4-baf1-30ed1eab6727\",\"created_at\":\"2017-01-24T11:45:16Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Synthpop\",\"name_slug\":\"synthpop\",\"description\":\"Synthpop (also known as technopop), a subgenre of new wave music first became prominent in the late 1970s and features the synthesizer as the dominant musical instrument. It was prefigured in the 1960s and early 1970s by the use of synthesizers in progressive rock, electronic, art rock, disco, and particularly the \\\"Krautrock\\\" of bands like Kraftwerk. It arose as a distinct genre in Japan and the United Kingdom in the post-punk era as part of the new wave movement of the late-1970s to the mid-1980s.\"},{\"id\":\"9742e751-b813-474c-bc09-c02de8867e9e\",\"created_at\":\"2017-01-19T18:24:02Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Dance-pop\",\"name_slug\":\"dance-pop\",\"description\":\"Dance-pop is a pop and dance subgenre that originated in the early 1980s. It is generally up-tempo music intended for nightclubs with the intention of being danceable but also suitable for contemporary hit radio. Developing from a combination of electronic dance music and pop music, with influences of disco music, post-disco, new wave, synthpop, electropop and house, it is generally characterised by strong beats with easy, uncomplicated song structures which are generally more similar to pop music than the more free-form dance genre, with an emphasis on melody as well as catchy tunes. The genre, on the whole, tends to be producer-driven, despite some notable exceptions.\"},{\"id\":\"c9581b8b-c72e-4e10-a54e-4c54f9d950b5\",\"created_at\":\"2017-01-19T17:17:57Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Pop\",\"name_slug\":\"pop\",\"description\":\"Pop music is a genre of popular music that originated in its modern form in the Western world during the 1950s and 1960s as a softer alternative to rock and roll. The terms \\\"popular music\\\" and \\\"pop music\\\" are often used interchangeably, although the former describes all music that is popular and includes many styles. \\\"Pop\\\" and \\\"rock\\\" were synonymous terms until the late 1960s, when they were increasingly used in opposition from each other.\"}],\"producers\":[{\"id\":\"2e6f6306-75ae-4270-9347-4aa7abc6f795\",\"created_at\":\"2017-01-17T15:56:03Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Taylor Swift\",\"name_slug\":\"taylor-swift\",\"nationality\":\"American\",\"occupation\":\"Singer-Songwriter\"},{\"id\":\"3bb7c3a4-7bbb-4b06-b0c1-1fcf71961082\",\"created_at\":\"2017-01-24T11:45:55Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Jack Antonoff\",\"name_slug\":\"jack-antonoff\",\"nationality\":\"American\",\"occupation\":\"Singer-Songwriter\"},{\"id\":\"6871fc3a-9ef6-4d9e-985a-6f296dcb48d8\",\"created_at\":\"2017-01-24T11:47:48Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Ali Payami\",\"name_slug\":\"ali-payami\",\"nationality\":\"Iranian\",\"occupation\":\"Composer\"},{\"id\":\"68d56953-1753-49a3-95e8-dc9d5c185bc9\",\"created_at\":\"2017-01-17T15:55:50Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Nathan Chapman\",\"name_slug\":\"nathan-chapman\",\"nationality\":\"American\",\"occupation\":\"Record Producer\"},{\"id\":\"7bd536a6-8792-44a6-a31e-d8d94c4799ee\",\"created_at\":\"2017-01-24T11:48:45Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Noel Zancanella\",\"name_slug\":\"noel-zancanella\",\"nationality\":\"American\",\"occupation\":\"Songwriter, Record Producer\"},{\"id\":\"9df3fb0d-9d82-40a5-93b0-f40b7a060863\",\"created_at\":\"2017-01-24T11:46:19Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Imogen Heap\",\"name_slug\":\"imogen-heap\",\"nationality\":\"British\",\"occupation\":\"Singer-Songwriter, Composer\"},{\"id\":\"ab2fc941-9ec6-4a69-997b-c038903042f3\",\"created_at\":\"2017-01-24T11:48:12Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Ryan Tedder\",\"name_slug\":\"ryan-tedder\",\"nationality\":\"American\",\"occupation\":\"Singer-Songwriter, Record Producer\"},{\"id\":\"ce3e6e55-d9b0-4c0e-8267-368c7dc9e7bf\",\"created_at\":\"2017-01-19T17:13:51Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Max Martin\",\"name_slug\":\"max-martin\",\"nationality\":\"Swedish\",\"occupation\":\"Songwriter\"},{\"id\":\"e590d28c-e380-4e35-a5cd-1de8896644af\",\"created_at\":\"2017-01-24T11:47:23Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Mattman \\u0026 Robin\",\"name_slug\":\"mattman--robin\",\"nationality\":\"Swedish\",\"occupation\":\"Songwriter, Production\"},{\"id\":\"f09488c6-3d47-4205-aa7c-164fba02924d\",\"created_at\":\"2017-01-24T11:46:44Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Greg Kurstin\",\"name_slug\":\"greg-kurstin\",\"nationality\":\"American\",\"occupation\":\"Record Producer, Songwriter\"},{\"id\":\"f585564b-ecdb-4025-b4e2-92157a33fc54\",\"created_at\":\"2017-01-19T17:15:14Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Shellback\",\"name_slug\":\"shellback\",\"nationality\":\"Swedish\",\"occupation\":\"Songwriter, Record Producer\"}],\"studios\":[{\"id\":\"51ae7963-7e54-4eea-90af-7014b458517e\",\"created_at\":\"2017-01-24T11:54:52Z\",\"updated_at\":\"2017-01-24T12:09:21Z\",\"name\":\"Conway Studios\",\"name_slug\":\"conway-studios\",\"founded_in\":\"Hollywood, CA, America\",\"founded_at\":63072000,\"website\":\"http://www.conwayrecording.com/\",\"albums\":[]},{\"id\":\"79842e71-128c-4e01-869b-dbb671c0a485\",\"created_at\":\"2017-01-24T12:03:11Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"MXM Studios\",\"name_slug\":\"mxm-studios\",\"founded_in\":\"Stockholm, Sweden\",\"founded_at\":978307200,\"website\":\"http://www.maratone.se/\",\"albums\":[]},{\"id\":\"79a635b2-c962-4c27-8f10-7fd96bf40e78\",\"created_at\":\"2017-01-19T12:44:19Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Pain in the Art Studio\",\"name_slug\":\"pain-in-the-art-studio\",\"founded_in\":\"Nashville, TN, Ameirica\",\"founded_at\":1325376000,\"website\":\"https://musicbrainz.org/place/65ac6370-2f0a-4533-a2f4-53717ff68940\",\"albums\":[]},{\"id\":\"9c870c93-ec5c-4a69-9e10-cf70c981fb3d\",\"created_at\":\"2017-01-24T11:58:26Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Jungle City Studios\",\"name_slug\":\"jungle-city-studios\",\"founded_in\":\"New York City, NY, America\",\"founded_at\":1293840000,\"website\":\"http://www.junglecitystudios.com/\",\"albums\":[]},{\"id\":\"dec0ccf4-d79e-4d0c-bb87-a91c807107ad\",\"created_at\":\"2017-01-24T12:05:06Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Studio Elevator Nobody\",\"name_slug\":\"studio-elevator-nobody\",\"founded_in\":\"Gothenburg, Västra Götaland, Sweden\",\"founded_at\":1230768000,\"website\":\"http://www.maratone.se/\",\"albums\":[]},{\"id\":\"ed025340-f038-4c65-9766-378c98a4d5c3\",\"created_at\":\"2017-01-24T12:00:30Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Lamby's House Studios\",\"name_slug\":\"lambys-house-studios\",\"founded_in\":\"Brooklyn, NY, America\",\"founded_at\":1388534400,\"website\":\"https://musicbrainz.org/place/579a7073-46ee-47eb-9a63-4e5bd535c7cd\",\"albums\":[]},{\"id\":\"fd964692-0b38-45f7-8005-d7099de99157\",\"created_at\":\"2017-01-24T12:05:50Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"The Hideaway Studio\",\"name_slug\":\"the-hideaway-studio\",\"founded_in\":\"Minneapolis, MN, America\",\"founded_at\":1230768000,\"website\":\"http://thehideawaympls.com/\",\"albums\":[]}],\"label\":{\"id\":\"d1ea2ebc-f8ce-434b-a6ee-28aa88f802f0\",\"created_at\":\"2017-01-17T15:54:30Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Big Machine Records\",\"name_slug\":\"big-machine-records\",\"founded_at\":1125532800,\"founded_in\":\"American\",\"location\":\"Record Executive\",\"website\":\"https://bigmachinerecords.com/\",\"albums\":[]}}"
+					},
+					"errors": [
+						{
+							"code": "album_not_found",
+							"status": 41864,
+							"description": "The specified album could not be found."
+						}
+					]
+				},
+				"delete-album": {
+					"name": "Delete Album",
+					"description": "This endpoint will delete an album by it's identifier.",
+					"method": "DELETE",
+					"path": "/albums/(ident)",
+					"isAuthenticated": true,
+					"allowsPagination": false,
+					"request": {
+						"example": {
+							"http": "DELETE /v1/albums/slug(1989) HTTP/1.1\nAuthorization: bearer fHCPxDaoNyXMTzrACxixvBpzU1m9Koz4rd7FrG7vIBVTAZOrDNiaJsWkiXlyFoSE\nCookie: __cfduid=d69c93dd42c3decbe8d8364b86fd770f41484616750\nHost: api.baelor.io\nConnection: close\nUser-Agent: Paw/3.0.15 (Macintosh; OS X/10.12.3) GCDHTTPRequest"
+						}
+					},
+					"response": {
+						"http": "HTTP/1.1 204 No Content\nDate: Thu, 26 Jan 2017 19:54:20 GMT\nConnection: close\nX-Rate-Limit-Limit: 1000\nX-Rate-Limit-Remaining: 997\nX-Rate-Limit-Reset: 2017-01-26 20:00:00 +0000 UTC\nStrict-Transport-Security: max-age=15552000\nX-Content-Type-Options: nosniff\nServer: cloudflare-nginx\nCF-RAY: 32768422f9b81371-LHR\n\n"
+					},
+					"errors": [
+						{
+							"code": "album_not_found",
+							"status": 41864,
+							"description": "The specified album could not be found."
+						},
+						{
+							"code": "unknown_error_deleting_album",
+							"status": 8405,
+							"description": "There was an unknown error deleting the album. Check sentry logs."
+						}
+					]
+				}
+			}
+		},
+		"genres": {
+			"name": "Genres",
+			"description": "genre stuff",
+			"idents": {
+				"id": "The id of the genre.",
+				"slug": "The slug of the genre's name."
+			},
+			"endpoints": {
+				"create-genre": {
+					"name": "Create Genre",
+					"description": "This endpoint will allow you to create a new genre.",
+					"method": "POST",
+					"path": "/genres",
+					"isAuthenticated": true,
+					"allowsPagination": false,
+					"request": {
+						"example": {
+							"http": "POST /v1/genres HTTP/1.1\nAuthorization: Bearer fHCPxDaoNyXMTzrACxixvBpzU1m9Koz4rd7FrG7vIBVTAZOrDNiaJsWkiXlyFoSE\nContent-Type: application/json; charset=utf-8\nCookie: __cfduid=d69c93dd42c3decbe8d8364b86fd770f41484616750\nHost: api.baelor.io\nConnection: close\nUser-Agent: Paw/3.0.15 (Macintosh; OS X/10.12.3) GCDHTTPRequest\nContent-Length: 231",
+							"json": "{\"name\":\"Dream Pop\",\"description\":\"Dream pop (or dreampop) is a subgenre of alternative rock and neo-psychedelia that developed in the 1980s. The style is typified by a preoccupation with atmosphere and texture as much as melody.\"}"
+						},
+						"body": [
+							{
+								"name": "name",
+								"required": true,
+								"description": "The name of the genre.",
+								"example": "Dream Pop"
+							},
+							{
+								"name": "description",
+								"required": true,
+								"description": "The description of the genre.",
+								"example": "Dream pop (or dreampop) is a subgenre of alternative rock..."
+							}
+						],
+						"schema": "{\"$schema\": \"http://json-schema.org/draft-04/schema#\",\"type\": \"object\",\"required\": [\"name\",\"description\"],\"additionalProperties\": false,\"properties\": {\"name\": {\"type\": \"string\"},\"description\": {\"type\": \"string\"}}}"
+					},
+					"response": {
+						"http": "HTTP/1.1 201 Created\nDate: Tue, 24 Jan 2017 14:05:25 GMT\nContent-Type: application/json; charset=utf-8\nContent-Length: 392\nConnection: close\nX-Rate-Limit-Limit: 1000\nX-Rate-Limit-Remaining: 998\nX-Rate-Limit-Reset: 2017-01-24 15:00:00 +0000 UTC\nStrict-Transport-Security: max-age=15552000\nX-Content-Type-Options: nosniff\nServer: cloudflare-nginx\nCF-RAY: 32640a4aac7d13a7-LHR",
+						"json": "{\"id\":\"153a465e-9587-44d4-8fd7-89c4e64c4a1a\",\"created_at\":\"2017-01-24T14:05:25.736281403Z\",\"updated_at\":\"2017-01-24T14:05:25.736281403Z\",\"name\":\"Dream Pop\",\"name_slug\":\"dream-pop\",\"description\":\"Dream pop (or dreampop) is a subgenre of alternative rock and neo-psychedelia that developed in the 1980s. The style is typified by a preoccupation with atmosphere and texture as much as melody.\"}"
+					},
+					"errors": [
+						{
+							"code": "validation_failed",
+							"status": 23731,
+							"description": "Validation of the JSON body failed. Check metadata."
+						},
+						{
+							"code": "genre_already_exists",
+							"status": 55631,
+							"description": "An genre with the specified name already exists."
+						},
+						{
+							"code": "unknown_error_creating_genre",
+							"status": 25909,
+							"description": "There was an unknown error creating the genre. Check sentry logs."
+						}
+					]
+				},
+				"get-genres": {
+					"name": "Get Genres",
+					"description": "This endpoint returns all genres within the pagination parameters.",
+					"method": "GET",
+					"path": "/genres",
+					"isAuthenticated": false,
+					"allowsPagination": true,
+					"request": {
+						"example": {
+							"http": "GET /v1/genres HTTP/1.1\nCookie: __cfduid=d69c93dd42c3decbe8d8364b86fd770f41484616750\nHost: api.baelor.io\nConnection: close\nUser-Agent: Paw/3.0.15 (Macintosh; OS X/10.12.3) GCDHTTPRequest"
+						}
+					},
+					"response": {
+						"http": "HTTP/1.1 200 OK\nDate: Thu, 26 Jan 2017 20:43:17 GMT\nContent-Type: application/json; charset=utf-8\nTransfer-Encoding: chunked\nConnection: close\nX-Rate-Limit-Limit: 1000\nX-Rate-Limit-Remaining: 999\nX-Rate-Limit-Reset: 2017-01-26 21:00:00 +0000 UTC\nStrict-Transport-Security: max-age=15552000\nX-Content-Type-Options: nosniff\nServer: cloudflare-nginx\nCF-RAY: 3276cbd719d70cb9-LHR",
+						"json": "{\"data\":[{\"id\":\"153a465e-9587-44d4-8fd7-89c4e64c4a1a\",\"created_at\":\"2017-01-24T14:05:26Z\",\"updated_at\":\"2017-01-24T14:16:13Z\",\"name\":\"Dream Pop\",\"name_slug\":\"dream-pop\",\"description\":\"Dream pop (or dreampop) is a subgenre of alternative rock and neo-psychedelia that developed in the 1980s. The style is typified by a preoccupation with atmosphere and texture as much as melody.\"}],\"links\":{\"first\":\"/v1/genres?start=0&count=25\",\"next\":\"/v1/genres?start=25&count=25\",\"previous\":\"/v1/genres?start=0&count=25\"}}"
+					}
+				},
+				"get-genre": {
+					"name": "Get Genre",
+					"description": "This endpoint will get an genre by it's identifier.",
+					"method": "GET",
+					"path": "/genres/(ident)",
+					"isAuthenticated": false,
+					"allowsPagination": false,
+					"request": {
+						"example": {
+							"http": "GET /v1/genres/slug(country) HTTP/1.1\nCookie: __cfduid=d69c93dd42c3decbe8d8364b86fd770f41484616750\nHost: api.baelor.io\nConnection: close\nUser-Agent: Paw/3.0.15 (Macintosh; OS X/10.12.3) GCDHTTPRequest"
+						}
+					},
+					"response": {
+						"http": "HTTP/1.1 200 OK\nDate: Thu, 26 Jan 2017 20:46:23 GMT\nContent-Type: application/json; charset=utf-8\nContent-Length: 499\nConnection: close\nX-Rate-Limit-Limit: 1000\nX-Rate-Limit-Remaining: 998\nX-Rate-Limit-Reset: 2017-01-26 21:00:00 +0000 UTC\nStrict-Transport-Security: max-age=15552000\nX-Content-Type-Options: nosniff\nServer: cloudflare-nginx\nCF-RAY: 3276d0638d07350c-LHR",
+						"json": "{\"id\":\"2ee2de57-2f73-47c6-8a11-6eb4a2b316ff\",\"created_at\":\"2017-01-17T15:53:17Z\",\"updated_at\":\"2017-01-19T18:30:01Z\",\"name\":\"Country\",\"name_slug\":\"country\",\"description\":\"Country music is a genre of United States popular music that originated in the southern United States in the 1920s. It takes its roots from the southeastern genre of United States, such as folk music (especially Appalachian folk music), and blues music. Blues modes have been used extensively throughout its recorded history.\"}"
+					},
+					"errors": [
+						{
+							"code": "genre_not_found",
+							"status": 36610,
+							"description": "The specified genre could not be found."
+						}
+					]
+				},
+				"delete-genre": {
+					"name": "Delete Genre",
+					"description": "This endpoint will delete a genre by it's identifier.",
+					"method": "DELETE",
+					"path": "/genres/(ident)",
+					"isAuthenticated": true,
+					"allowsPagination": false,
+					"request": {
+						"example": {
+							"http": "DELETE /v1/genres/slug(country) HTTP/1.1\nCookie: __cfduid=d69c93dd42c3decbe8d8364b86fd770f41484616750\nHost: api.baelor.io\nConnection: close\nUser-Agent: Paw/3.0.15 (Macintosh; OS X/10.12.3) GCDHTTPRequest"
+						}
+					},
+					"response": {
+						"http": "HTTP/1.1 204 No Content\nDate: Thu, 26 Jan 2017 20:50:52 GMT\nConnection: close\nX-Rate-Limit-Limit: 1000\nX-Rate-Limit-Remaining: 994\nX-Rate-Limit-Reset: 2017-01-26 21:00:00 +0000 UTC\nStrict-Transport-Security: max-age=15552000\nX-Content-Type-Options: nosniff\nServer: cloudflare-nginx\nCF-RAY: 3276d6f50acd0cb9-LHR"
+					},
+					"errors": [
+						{
+							"code": "genre_not_found",
+							"status": 36610,
+							"description": "The specified genre could not be found."
+						},
+						{
+							"code": "unknown_error_deleting_genre",
+							"status": 34509,
+							"description": "There was an unknown error creating the genre. Check sentry logs."
+						}
+					]
+				}
+			}
+		},
+		"labels": {
+			"name": "Labels",
+			"description": "label stuff",
+			"idents": {
+				"id": "The id of the label.",
+				"slug": "The slug of the label's name"
+			},
+			"endpoints": {
+				"create-label": {
+					"name": "Create Label",
+					"description": "This endpoint will allow you to create a new record label.",
+					"method": "POST",
+					"path": "/labels",
+					"isAuthenticated": true,
+					"allowsPagination": false,
+					"request": {
+						"example": {
+							"http": "POST /v1/labels HTTP/1.1\nAuthorization: Bearer fHCPxDaoNyXMTzrACxixvBpzU1m9Koz4rd7FrG7vIBVTAZOrDNiaJsWkiXlyFoSE\nContent-Type: application/json; charset=utf-8\nCookie: __cfduid=d69c93dd42c3decbe8d8364b86fd770f41484616750\nHost: api.baelor.io\nConnection: close\nUser-Agent: Paw/3.0.15 (Macintosh; OS X/10.12.3) GCDHTTPRequest\nContent-Length: 151",
+							"json": "{\"name\":\"Big Machine Records\",\"founded_at\":1125532800,\"founded_in\":\"Nashville, TN, USA\",\"location\":\"Nashville, TN, USA\",\"website\":\"https://bigmachinerecords.com/\"}"
+						},
+						"body": [
+							{
+								"name": "name",
+								"required": true,
+								"description": "The name of the record label.",
+								"example": "Big Machine Records"
+							},
+							{
+								"name": "founded_at",
+								"required": true,
+								"description": "A unix timestamp denoting the date the record label was founded.",
+								"example": "1125532800"
+							},
+							{
+								"name": "founded_in",
+								"required": true,
+								"description": "The country the record label was founded in.",
+								"example": "Nashville, TN, USA"
+							},
+							{
+								"name": "location",
+								"required": true,
+								"description": "The location of the record label",
+								"example": "Nashville, TN, USA"
+							},
+							{
+								"name": "website",
+								"required": true,
+								"description": "The website of the record label.",
+								"example": "Dream Pop"
+							}
+						],
+						"schema": "{\"$schema\": \"http://json-schema.org/draft-04/schema#\",\"type\": \"object\",\"required\": [\"name\",\"founded_at\",\"founded_in\",\"location\",\"website\"],\"additionalProperties\": false,\"properties\": {\"name\": {\"type\": \"string\"},\"founded_at\": {\"type\": \"integer\"},\"founded_in\": {\"type\": \"string\"},\"location\": {\"type\": \"string\"},\"website\": {\"type\": \"string\"}}}"
+					},
+					"response": {
+						"http": "HTTP/1.1 201 Created\nDate: Thu, 26 Jan 2017 23:07:36 GMT\nContent-Type: application/json; charset=utf-8\nContent-Length: 336\nConnection: close\nX-Rate-Limit-Limit: 1000\nX-Rate-Limit-Remaining: 996\nX-Rate-Limit-Reset: 2017-01-27 00:00:00 +0000 UTC\nStrict-Transport-Security: max-age=15552000\nX-Content-Type-Options: nosniff\nServer: cloudflare-nginx\nCF-RAY: 32779f421a8634ca-LHR",
+						"json": "{\"id\":\"0eceffaa-36da-4c95-a8bc-4603b7f37b7f\",\"created_at\":\"2017-01-26T23:07:36.789813548Z\",\"updated_at\":\"2017-01-26T23:07:36.789813548Z\",\"name\":\"Big Machine Records\",\"name_slug\":\"big-machine-records\",\"founded_at\":1125532800,\"founded_in\":\"Nashville, TN, USA\",\"location\":\"Nashville, TN, USA\",\"website\":\"https://bigmachinerecords.com/\",\"albums\":[]}\n"
+					},
+					"errors": [
+						{
+							"code": "validation_failed",
+							"status": 23731,
+							"description": "Validation of the JSON body failed. Check metadata."
+						},
+						{
+							"code": "label_already_exists",
+							"status": 34188,
+							"description": "An label with the specified name already exists."
+						},
+						{
+							"code": "unknown_error_creating_label",
+							"status": 45262,
+							"description": "There was an unknown error creating the label. Check sentry logs."
+						}
+					]
+				},
+				"get-labels": {
+					"name": "Get Labels",
+					"description": "This endpoint returns all record labels within the pagination parameters.",
+					"method": "GET",
+					"path": "/labels",
+					"isAuthenticated": false,
+					"allowsPagination": true,
+					"request": {
+						"example": {
+							"http": "GET /v1/labels HTTP/1.1\nCookie: __cfduid=d69c93dd42c3decbe8d8364b86fd770f41484616750\nHost: api.baelor.io\nConnection: close\nUser-Agent: Paw/3.0.15 (Macintosh; OS X/10.12.3) GCDHTTPRequest"
+						}
+					},
+					"response": {
+						"http": "HTTP/1.1 200 OK\nDate: Thu, 26 Jan 2017 23:11:09 GMT\nContent-Type: application/json; charset=utf-8\nContent-Length: 783\nConnection: close\nX-Rate-Limit-Limit: 1000\nX-Rate-Limit-Remaining: 995\nX-Rate-Limit-Reset: 2017-01-27 00:00:00 +0000 UTC\nStrict-Transport-Security: max-age=15552000\nX-Content-Type-Options: nosniff\nServer: cloudflare-nginx\nCF-RAY: 3277a476784134fa-LHR",
+						"json": "{\"data\":[{\"id\":\"0eceffaa-36da-4c95-a8bc-4603b7f37b7f\",\"created_at\":\"2017-01-26T23:07:37Z\",\"updated_at\":\"2017-01-26T23:07:37Z\",\"name\":\"Big Machine Records\",\"name_slug\":\"big-machine-records\",\"founded_at\":1125532800,\"founded_in\":\"Nashville, TN, USA\",\"location\":\"Nashville, TN, USA\",\"website\":\"https://bigmachinerecords.com/\",\"albums\":[]}],\"links\":{\"first\":\"/v1/labels?start=0\\u0026count=25\",\"next\":\"/v1/labels?start=25\\u0026count=25\",\"previous\":\"/v1/labels?start=0\\u0026count=25\"}}"
+					}
+				},
+				"get-label": {
+					"name": "Get Genre",
+					"description": "This endpoint will get an genre by it's identifier.",
+					"method": "GET",
+					"path": "/genres/(ident)",
+					"isAuthenticated": false,
+					"allowsPagination": false,
+					"request": {
+						"example": {
+							"http": "GET /v1/labels/slug(big-machine-records) HTTP/1.1\nCookie: __cfduid=d69c93dd42c3decbe8d8364b86fd770f41484616750\nHost: api.baelor.io\nConnection: close\nUser-Agent: Paw/3.0.15 (Macintosh; OS X/10.12.3) GCDHTTPRequest"
+						}
+					},
+					"response": {
+						"http": "HTTP/1.1 200 OK\nDate: Thu, 26 Jan 2017 23:12:48 GMT\nContent-Type: application/json; charset=utf-8\nContent-Length: 314\nConnection: close\nX-Rate-Limit-Limit: 1000\nX-Rate-Limit-Remaining: 994\nX-Rate-Limit-Reset: 2017-01-27 00:00:00 +0000 UTC\nStrict-Transport-Security: max-age=15552000\nX-Content-Type-Options: nosniff\nServer: cloudflare-nginx\nCF-RAY: 3277a6dffd7835b4-LHR",
+						"json": "{\"id\":\"d1ea2ebc-f8ce-434b-a6ee-28aa88f802f0\",\"created_at\":\"2017-01-17T15:54:30Z\",\"updated_at\":\"2017-01-26T15:51:08Z\",\"name\":\"Big Machine Records\",\"name_slug\":\"big-machine-records\",\"founded_at\":1125532800,\"founded_in\":\"Nashville, TN, USA\",\"location\":\"Nashville, TN, USA\",\"website\":\"https://bigmachinerecords.com/\",\"albums\":[]}"
+					},
+					"errors": [
+						{
+							"code": "label_not_found",
+							"status": 45072,
+							"description": "The specified record label could not be found."
+						}
+					]
+				},
+				"delete-label": {
+					"name": "Delete Label",
+					"description": "This endpoint will delete a record label by it's identifier.",
+					"method": "DELETE",
+					"path": "/labels/(ident)",
+					"isAuthenticated": true,
+					"allowsPagination": false,
+					"request": {
+						"example": {
+							"http": "DELETE /v1/labels/slug(big-machine-recordss) HTTP/1.1\nAuthorization: bearer fHCPxDaoNyXMTzrACxixvBpzU1m9Koz4rd7FrG7vIBVTAZOrDNiaJsWkiXlyFoSE\nCookie: __cfduid=d69c93dd42c3decbe8d8364b86fd770f41484616750\nHost: api.baelor.io\nConnection: close\nUser-Agent: Paw/3.0.15 (Macintosh; OS X/10.12.3) GCDHTTPRequest"
+						}
+					},
+					"response": {
+						"http": "HTTP/1.1 204 No Content\nDate: Thu, 26 Jan 2017 23:14:56 GMT\nConnection: close\nX-Rate-Limit-Limit: 1000\nX-Rate-Limit-Remaining: 992\nX-Rate-Limit-Reset: 2017-01-27 00:00:00 +0000 UTC\nStrict-Transport-Security: max-age=15552000\nX-Content-Type-Options: nosniff\nServer: cloudflare-nginx\nCF-RAY: 3277a9ff0c0c349a-LHR"
+					},
+					"errors": [
+						{
+							"code": "label_not_found",
+							"status": 45072,
+							"description": "The specified record label could not be found."
+						},
+						{
+							"code": "unknown_error_deleting_label",
+							"status": 21302,
+							"description": "There was an unknown error creating the record label. Check sentry logs."
+						}
+					]
+				}
+			}
+		},
+		"lyrics": {
+			"name": "Lyrics",
+			"description": "lyric stuff",
+			"idents": {
+				"id": "The id of the lyric."
+			},
+			"endpoints": {
+				"create-lyric": { },
+				"get-lyrics": { },
+				"get-lyric": { },
+				"delete-lyric": { }
+			}
+		}
+	}
+}

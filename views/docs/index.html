@@ -1,0 +1,389 @@
+{{ define "content" }}
+<section id="api-docs-header">
+	<div class="mask">
+		<div class="container">
+			<h1>api docs</h1>
+			<h2>full set of resources and information required to use baelor.io</h2>
+		</div>
+	</div>
+</section>
+<section id="api-docs-content">
+	<div class="row">
+		<div id="docs-sidebar-container" class="col-md-3 hidden-sm hidden-xs">
+			<nav class="api-docs-sidebar" id="docs-sidebar" data-spy="affix" data-offset-top="500" data-offset-bottom="250">
+				<ul class="nav api-docs-sidenav" role="tablist">
+					<li>
+						<a href="#authentication">Authentication</a>
+					</li>
+					<li>
+						<a href="#rate-limit">Rate Limit</a>
+					</li>
+					<li>
+						<a href="#pagination">Pagination</a>
+					</li>
+					<li>
+						<a href="#idents">Idents</a>
+					</li>
+					<li>
+						<a href="#errors">Errors</a>
+					</li>
+					<li>
+						<hr />
+					</li>
+					{{ range $key, $val := .manifest.Groups }}
+						<li>
+							<a href="#{{ $key }}">{{ $val.Name }}</a>
+							<ul class="nav">
+								{{ range $endKey, $endVal := $val.Endpoints }}
+									<li><a href="#{{ $endKey }}">{{ $endVal.Name }}</a></li>
+								{{ end }}
+							</ul>
+						</li>
+					{{ end }}
+				</ul>
+				<a class="back-to-top hidden-xs hidden-sm" href="#top">
+					Back to top
+				</a>
+			</nav>
+		</div>
+		<div class="col-md-8 api-docs">
+			<section id="authentication">
+				<h1>Authentication</h1>
+				<article>
+					<h2>Unauthorized</h2>
+					<p>
+						Not much to say here. Go have fun!
+					</p>
+				</article>
+				<article>
+					<h2>Authorized</h2>
+					<p>
+						The only endpoints that require authentication are ones that
+						either modify or create data - as well as all the endpoints to do
+						with users. I don't plan on opening that up, but I'll document
+						how it works just incase I do.
+					</p>
+					<p>
+						When you create a user, you will be given a 64 character
+						alphanumeric key called your <code>api_key</code>. To send an
+						authenticated request, use the following header
+						<code>Authorization: bearer api_key</code>.
+					</p>
+				</article>
+			</section>
+			<section id="rate-limit">
+				<h1>Rate Limit</h1>
+				<article>
+					<p>
+						You are allowed 1,000 requests per hour, if you go over this you
+						will recieve a <code>429</code> response from the server. 
+					</p>
+				</article>
+				<article>
+					<h2>Headers</h2>
+					<p>
+						So you can handle rate limiting programatically, every request
+						will return 3 headers telling you how many requests you have left,
+						how many you re allowed to make, and when the limit will be reset.
+					</p>
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+									<td>Header</td>
+									<td>Value</td>
+									<td>Description</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>X-Rate-Limit-Limit</td>
+									<td>1000</td>
+									<td>
+										The number of requests you are allowed to make an
+										hour.
+									</td>
+								</tr>
+								<tr>
+									<td>X-Rate-Limit-Remaining</td>
+									<td>[0-1000]</td>
+									<td>
+										How many requests you have left in the current
+										time window.
+									</td>
+								</tr>
+								<tr>
+									<td>X-Rate-Limit-Reset</td>
+									<td>2017-01-24 23:00:00 +0000 UTC</td>
+									<td>The time that the Rate Limit will reset.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</article>
+			</section>
+			<section id="pagination">
+				<h1>Pagination</h1>
+				<p>
+					Requests that are denoted with the
+					<span class="label label-default">Allows Pagination</span>
+					label support pagination. Pagination supports <code>start</code> and
+					<code>count</code>. Returned results are ordered by the date they were
+					created in the database - <code>created_at</code>.
+				</p>
+				<article>
+					<h2>Query Parameters</h2>
+					<h3>start</h3>
+					<p>
+						The starting offset in the database. If less than 0, will be
+						defaulted to 0.
+					</p>
+					<h3>count</h3>
+					<p>
+						The limit of items to retrieve. It has a max size of 100, any
+						request made with more than 100 specified will be defauled to 0.
+					</p>
+				</article>
+				<article>
+					<h2>Response Format</h2>
+					<pre><code class="json indentJson" data-json="{{ .manifest.Pagination.Example }}"></code></pre>
+				</article>
+			</section>
+			<section id="idents">
+				<h1>Idents</h1>
+				<p>
+					When querying a specific entity, you can select the item by providing
+					any of the allowed <code>ident</code>'s. Allowed idents are listed
+					at the top of every endpoint group.
+				</p>
+				<article>
+					<h2>Using Idents</h2>
+					<p>
+						The format for querying with idents is
+						<code>/v1/endpoint/ident_type(ident)</code>.
+					</p>
+					<p>
+						For example if you wanted to query the album with the slug
+						<code>1989</code>, you would call the following: <code>/v1/albums/slug(1989)</code>.
+					</p>
+					<p>
+						Or if you wanted to query the album with the id <code>1d3442d7-434a-4dba-a615-d2ae0d82b421</code>
+						you would call: <code>/v1/albums/id(1d3442d7-434a-4dba-a615-d2ae0d82b421)</code>.
+					</p>
+				</article>
+			</section>
+			<section id="errors">
+				<h1>Errors</h1>
+				<article>
+					<h2>Response Format</h2>
+					<pre><code class="json indentJson" data-json="{{ .manifest.GlobalErrors.Example }}"></code></pre>
+					<h3>code</h3>
+					<p>
+						This is a snake_case string representation of the error. This can easily be used for client localization.
+					</p>
+					<h3>status</h3>
+					<p>
+						This is an interger representation of the error. This can easily be mapped to an enum for catching errors.
+					</p>
+					<h3>metadata</h3>
+					<p>
+						This holds additional error data stored in a dictionary. This can be null.
+					</p>
+				</article>
+				<article>
+					<h2>Global Baelor Errors</h2>
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+									<td>
+										Error Code
+									</td>
+									<td>
+										Error Status
+									</td>
+									<td>
+										Error Description
+									</td>
+								</tr>
+							</thead>
+							<tbody>
+								{{ range $i, $error := .manifest.GlobalErrors.Errors }}
+									<tr>
+										<td><code>{{ $error.Code }}</code></td>
+										<td><code>{{ $error.Status }}</code></td>
+										<td>{{ $error.Description }}</td>
+									</tr>
+								{{ end }}
+							</tbody>
+						</table>
+					</div>
+				</article>
+			</section>
+
+			{{ range $groupKey, $groupValue := .manifest.Groups }}
+				<section id="{{ $groupKey }}">
+					<h1>{{ $groupValue.Name }}</h1>
+					{{ range $endpointKey, $endpointValue := $groupValue.Endpoints }}
+						<article id="{{ $endpointKey }}">
+							<h2>{{ $endpointValue.Name }}</h2>
+							<h3>
+								<span class="label label-info">{{ $endpointValue.Method }}</span> ::
+
+								{{ if $endpointValue.IsAuthenticated }}
+									<span class="label label-warning">Requires Authentication</span>
+								{{ end }}
+								{{ if not $endpointValue.IsAuthenticated true }}
+									<span class="label label-success">Not Authenticated</span>
+								{{ end }}
+
+								{{ if $endpointValue.AllowsPagination }}
+									<span class="label label-default">Allows Pagination</span>
+								{{ end }}
+
+								:: <code>{{ $endpointValue.Path }}</code>
+							</h3>
+							<h3>
+								{{ $endpointValue.Description }}
+							</h3>
+
+							<!-- Endpoint Info Tabs -->
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="dropdown active">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false">
+										Request
+										<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu">
+										{{ if not (len $endpointValue.Request.Body) 0 }}
+											<li>
+												<a href="#{{ $endpointKey }}-request-body" role="tab" data-toggle="tab" aria-expanded="true">
+													Request Body
+												</a>
+											</li>
+										{{ end }}
+										{{ if not $endpointValue.Request.Schema "" }}
+											<li>
+												<a href="#{{ $endpointKey }}-request-schema" role="tab" data-toggle="tab" aria-expanded="true">
+													Request Schema
+												</a>
+											</li>
+										{{ end }}
+										<li class="active">
+											<a href="#{{ $endpointKey }}-request-example" role="tab" data-toggle="tab" aria-expanded="true">
+												Request Example
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li role="presentation">
+									<a href="#{{ $endpointKey }}-response" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">
+										Response
+									</a>
+								</li>
+								{{ if not (len $endpointValue.Errors) 0 }}
+									<li role="presentation">
+										<a href="#{{ $endpointKey }}-errors" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">
+											Errors
+										</a>
+									</li>
+								{{ end }}
+							</ul>
+
+							<!-- Endpoint Info Content -->
+							<div class="tab-content">
+								{{ if not (len $endpointValue.Request.Body) 0 }}
+									<div role="tabpanel" class="tab-pane" id="{{ $endpointKey }}-request-body">
+										<table class="table table-responsive table-striped table-bordered">
+											<thead>
+												<tr>
+													<td>
+														Name
+													</td>
+													<td>
+														Required
+													</td>
+													<td>
+														Description
+													</td>
+													<td>
+														Example
+													</td>
+												</tr>
+											</thead>
+											<tbody>
+												{{ range $i, $body := $endpointValue.Request.Body }}
+													<tr>
+														<td>
+															{{ $body.Name }}
+														</td>
+														<td>
+															{{ if $body.Required }}
+																<span class="label label-success">yes</span>
+															{{ end }}
+															{{ if not $body.Required true }}
+																<span class="label label-info">no</span>
+															{{ end }}
+														</td>
+														<td>
+															{{ $body.Description }}
+														</td>
+														<td>
+															{{ $body.Example }}
+														</td>
+													</tr>
+												{{ end }}
+											</tbody>
+										</table>
+									</div>
+								{{ end }}
+								{{ if not $endpointValue.Request.Schema "" }}
+									<div role="tabpanel" class="tab-pane" id="{{ $endpointKey }}-request-schema">
+										<pre><code class="json indentJson" data-json="{{ $endpointValue.Request.Schema }}"></code></pre>
+									</div>
+								{{ end }}
+								<div role="tabpanel" class="tab-pane active" id="{{ $endpointKey }}-request-example">
+									<pre><code class="http indentHttpAndJson" data-http="{{ $endpointValue.Request.Example.HTTP }}" data-json="{{ $endpointValue.Request.Example.JSON }}"></code></pre>
+								</div>
+
+								<div role="tabpanel" class="tab-pane" id="{{ $endpointKey }}-response">
+									<pre><code class="http indentHttpAndJson" data-http="{{ $endpointValue.Response.HTTP }}" data-json="{{ $endpointValue.Response.JSON }}"></code></pre>
+								</div>
+
+								{{ if not (len $endpointValue.Errors) 0 }}
+									<div role="tabpanel" class="tab-pane" id="{{ $endpointKey }}-errors">
+										<table class="table table-striped table-bordered">
+											<thead>
+												<tr>
+													<td>
+														Error Code
+													</td>
+													<td>
+														Error Status
+													</td>
+													<td>
+														Error Description
+													</td>
+												</tr>
+											</thead>
+											<tbody>
+												{{ range $i, $error := $endpointValue.Errors }}
+													<tr>
+														<td><code>{{ $error.Code }}</code></td>
+														<td><code>{{ $error.Status }}</code></td>
+														<td>{{ $error.Description }}</td>
+													</tr>
+												{{ end }}
+											</tbody>
+										</table>
+									</div>
+								{{ end }}
+							</div>
+						</article>
+					{{ end }}
+				</section>
+			{{ end }}
+		</div>
+	</div>
+</section>
+{{ end }}

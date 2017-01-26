@@ -17,6 +17,7 @@ type HomeController struct {
 func (ctrl HomeController) Index(c *gin.Context) {
 	c.HTML(http.StatusOK, "home/index", gin.H{
 		"title":       "Home",
+		"page":        "home",
 		"api_address": ctrl.context.APIAddress,
 	})
 }
