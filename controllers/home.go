@@ -22,6 +22,14 @@ func (ctrl HomeController) Index(c *gin.Context) {
 	})
 }
 
+// About ..
+func (ctrl HomeController) About(c *gin.Context) {
+	c.HTML(http.StatusOK, "home/about", gin.H{
+		"title": "About",
+		"page":  "about",
+	})
+}
+
 // NewHomeController ..
 func NewHomeController(r *gin.Engine, c *m.Context) {
 	ctrl := new(HomeController)
@@ -29,4 +37,5 @@ func NewHomeController(r *gin.Engine, c *m.Context) {
 
 	r.GET("", ctrl.Index)
 	r.GET("index", ctrl.Index)
+	r.GET("about", ctrl.About)
 }

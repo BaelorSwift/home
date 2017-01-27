@@ -1,0 +1,69 @@
+{{ define "content" }}
+<section id="about-header">
+	<div class="mask">
+		<div class="container">
+			<h1>about</h1>
+			<h2>the <strong>RESTful</strong><sup>(ish)</sup> taylor swift api</h2>
+		</div>
+	</div>
+</section>
+
+<section id="about-content">
+	<div class="row">
+		<article class="col-md-offset-2 col-md-4">
+			<h3>What even..?</h3>
+
+			<div class="well">
+				<p>
+					baelor.io - is a fully <strong>RESTful</strong><sup>(ish)</sup> API
+					for consuming data on the most important artist of our generation.
+				</p>
+				<p>
+					Taylor Swift.
+				</p>
+			</div>
+		</article>
+
+		<article class="col-md-4">
+			<h3>Why even..?</h3>
+
+			<div class="well">
+				<p>
+					Want to make <code>taylor_swift_ebooks</code>? Want to get the producers and writers of <code>Shake It Off</code>?
+					Now you can do that with a simple HTTP request to baelor.io.
+				</p>
+				<p>
+					<em>truly distuptive</em>
+				</p>
+			</div>
+		</article>
+	</div>
+
+	<hr class="col-md-offset-3 col-md-6" />
+
+	<div class="row">
+		<article class="col-md-offset-2 col-md-4">
+			<h3>What is this running on?</h3>
+
+			<div class="well">
+				<ul>
+					<li>
+						The API is built on golang, querying from a MySQL database. Inside
+						a nice couple of Docker containers.
+					</li>
+				</ul>
+			</div>
+		</article>
+
+		<article class="col-md-4">
+			<h3>But.. The data?</h3>
+
+			<div class="well">
+				<p>
+					The album, album cover, and song data was scraped from wikipedia. The lyric data was scraped from a lyric wiki. All data is owned by bae.
+				</p>
+			</div>
+		</article>
+	</div>
+</section>
+{{ end }}
