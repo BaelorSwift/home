@@ -1,3 +1,7 @@
+body.body-docs {
+	position: relative;
+}
+
 #api-docs-header {
 	text-align: center;
 	color: #fff;
@@ -50,6 +54,88 @@
 	margin-top: 40px;
 	padding-left: 20px;
 	padding-right: 20px;
+
+	.api-docs-sidebar {
+		margin-top: 50px;
+		margin-right: 20px;
+		padding-left: 30px;
+
+		ul {
+			font-size: 14px;
+
+			> li {
+				> a {
+					display: block;
+					font-weight: 500;
+					color: #999;
+					padding: 4px 20px;
+
+					&:hover,
+					&:focus {
+						padding-left: 20px;
+						color: $primary-red;
+						text-decoration: none;
+						background-color: transparent;
+						border-right: 1px solid $primary-red;
+					}
+				}
+
+				&.active {
+					> a {
+						padding-left: 20px;
+						font-weight: 700;
+						color: $primary-red;
+						background-color: transparent;
+						border-right: 1px solid $primary-red;
+					}
+
+					ul {
+						display: block;
+					}
+
+					&:hover > a,
+					&:focus > a {
+						padding-left: 20px;
+						font-weight: 700;
+						color: $primary-red;
+						background-color: transparent;
+						border-right: 1px solid $primary-red;
+					}
+				}
+
+				ul {
+					font-size: 12px;
+					display: none;
+
+					> li {
+						padding-left: 15px;
+						> a {
+							padding-top: 3px;
+							padding-bottom: 3px
+						}
+					}
+				}
+			}
+		}
+
+		@media (min-width: ($extra-small-devices-width + 1)) {
+			width: 250px;
+		}
+
+		&.affix {
+			position: fixed;
+			top: 23px;
+
+			@media (min-width: ($extra-small-devices-width + 1)) {
+				width: 250px;
+			}
+		}
+
+		.api-docs-sidenav {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+	}
 
 	.api-docs {
 		position: relative;
@@ -106,94 +192,6 @@
 
 			&:last-child {
 				margin-bottom: 80px;
-			}
-		}
-	}
-
-	.api-docs-sidebar {
-		margin-top: 50px;
-		margin-right: 20px;
-		padding-left: 30px;
-
-		@media (min-width: ($extra-small-devices-width + 1)) {
-			width: 250px;
-		}
-
-		&.affix {
-			position: fixed;
-			top: 23px;
-
-			@media (min-width: ($extra-small-devices-width + 1)) {
-				width: 250px;
-			}
-		}
-
-		.api-docs-sidenav {
-			margin-top: 20px;
-			margin-bottom: 20px;
-		}
-
-		.nav {
-			font-size: 15px;
-			
-			> .active {
-				> a {
-					padding-left: 20px;
-					font-weight: 700;
-					color: $primary-red;
-					background-color: transparent;
-					border-right: 1px solid $primary-red;
-				}
-
-				&:hover > a,
-				&:focus > a {
-					padding-left: 20px;
-					font-weight: 700;
-					color: $primary-red;
-					background-color: transparent;
-					border-right: 1px solid $primary-red;
-				}
-			}
-
-			> li > a {
-				display: block;
-				font-size: 15px;
-				font-weight: 500;
-				color: #999;
-				padding: 4px 20px;
-
-				&:hover,
-				&:focus {
-					padding-left: 20px;
-					color: $primary-red;
-					text-decoration: none;
-					background-color: transparent;
-					border-right: 1px solid $primary-red;
-				}
-			}
-
-			.nav {
-				padding-bottom: 10px;
-
-				.active {
-					> a {
-						font-weight: 700;
-						padding-left: 40px;
-					}
-
-					&:hover > a,
-					&:focus > a {
-						padding-left: 40px;
-					}
-				}
-
-				> li > a {
-					padding-top: 1px;
-					padding-bottom: 1px;
-					padding-left: 40px;
-					font-size: 13px;
-					font-weight: 400;
-				}
 			}
 		}
 	}
