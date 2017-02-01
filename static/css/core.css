@@ -313,9 +313,10 @@ body.body-docs {
 /* line 63, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs-sidebar ul {
   font-size: 14px;
+  list-style-type: none;
 }
 
-/* line 67, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 68, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs-sidebar ul > li > a {
   display: block;
   font-weight: 500;
@@ -323,7 +324,7 @@ body.body-docs {
   padding: 4px 20px;
 }
 
-/* line 73, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 74, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs-sidebar ul > li > a:hover, #api-docs-content .api-docs-sidebar ul > li > a:focus {
   padding-left: 20px;
   color: #e45a5a;
@@ -332,7 +333,7 @@ body.body-docs {
   border-right: 1px solid #e45a5a;
 }
 
-/* line 84, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 85, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs-sidebar ul > li.active > a {
   padding-left: 20px;
   font-weight: 700;
@@ -341,12 +342,12 @@ body.body-docs {
   border-right: 1px solid #e45a5a;
 }
 
-/* line 92, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 93, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs-sidebar ul > li.active ul {
   display: block;
 }
 
-/* line 96, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 97, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs-sidebar ul > li.active:hover > a,
 #api-docs-content .api-docs-sidebar ul > li.active:focus > a {
   padding-left: 20px;
@@ -356,18 +357,18 @@ body.body-docs {
   border-right: 1px solid #e45a5a;
 }
 
-/* line 106, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 107, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs-sidebar ul > li ul {
   font-size: 12px;
   display: none;
 }
 
-/* line 110, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 111, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs-sidebar ul > li ul > li {
   padding-left: 15px;
 }
 
-/* line 112, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 113, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs-sidebar ul > li ul > li > a {
   padding-top: 3px;
   padding-bottom: 3px;
@@ -380,36 +381,36 @@ body.body-docs {
   }
 }
 
-/* line 125, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 126, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs-sidebar.affix {
   position: fixed;
   top: 23px;
 }
 
 @media (min-width: 481px) {
-  /* line 125, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+  /* line 126, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
   #api-docs-content .api-docs-sidebar.affix {
     width: 250px;
   }
 }
 
-/* line 134, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 135, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs-sidebar .api-docs-sidenav {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-/* line 140, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 141, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs {
   position: relative;
 }
 
-/* line 143, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 144, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs > section {
   margin-bottom: 60px;
 }
 
-/* line 146, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 147, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs > section h1 {
   color: #464646;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -419,12 +420,12 @@ body.body-docs {
   border-bottom: 1px solid #eee;
 }
 
-/* line 155, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 156, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs > section > article {
   padding-top: 10px;
 }
 
-/* line 158, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 159, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs > section > article > h2 {
   color: #5c5c5c;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -434,42 +435,42 @@ body.body-docs {
   border-bottom: 1px solid #eee;
 }
 
-/* line 168, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 169, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs > section > article > hr {
   margin-top: 0;
   margin-bottom: -10px;
 }
 
-/* line 173, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 174, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs > section > article > h3 {
   color: #5c5c5c;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
 }
 
-/* line 179, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 180, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs > section > article > .table {
   margin-top: 30px;
 }
 
-/* line 183, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 184, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs > section > article > h4 {
   color: #5c5c5c;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* line 188, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 189, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs > section > article code {
   max-height: 500px;
 }
 
-/* line 193, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+/* line 194, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
 #api-docs-content .api-docs > section:last-child {
   margin-bottom: 80px;
 }
 
 @media (max-width: 992px) {
-  /* line 200, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
+  /* line 201, /Users/alex/Source/go/src/github.com/baelorswift/home/static/scss/_docs.scss */
   #api-docs-content .api-docs-sidebar.affix {
     position: static;
   }
